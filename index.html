@@ -45,7 +45,7 @@
       <span>Source: Open-Meteo exact coordinates</span>
     </section>
 
-    <section class="event-panel" aria-labelledby="eventTitle">
+    <section id="eventPanel" class="event-panel" aria-labelledby="eventTitle">
       <div class="section-head">
         <div><p class="eyebrow">Operations awareness</p><h2 id="eventTitle">NERC Weather Event Indicators</h2></div>
         <span id="eventOverall" class="event-state normal">Normal</span>
@@ -76,31 +76,25 @@
       </section>
     </div>
 
-    <section id="alignedView" class="aligned-view hidden">
-      <div class="aligned-row">
-        <article class="tile aligned-tile"><span class="label">Dry Bulb</span><strong id="alignedDryBulb">—</strong><small>Current</small></article>
-        <article class="panel aligned-panel"><h2>Dry Bulb · Drag for Previous 24 Hours</h2><canvas id="alignedTempChart"></canvas></article>
-      </div>
-      <div class="aligned-row">
-        <article class="tile aligned-tile"><span class="label">Relative Humidity</span><strong id="alignedHumidity">—</strong><small>Current</small></article>
-        <article class="panel aligned-panel"><h2>Humidity · Drag for Previous 24 Hours</h2><canvas id="alignedHumidityChart"></canvas></article>
-      </div>
-      <div class="aligned-row">
-        <article class="tile aligned-tile"><span class="label">Barometric Pressure</span><strong id="alignedPressure">—</strong><small id="alignedPressureTrend">—</small></article>
-        <article class="panel aligned-panel"><h2>Pressure · Drag for Previous 24 Hours</h2><canvas id="alignedPressureChart"></canvas></article>
-      </div>
-      <div class="aligned-row">
-        <article class="tile aligned-tile"><span class="label">Wind Speed</span><strong id="alignedWindSpeed">—</strong><small id="alignedWindGust">—</small></article>
-        <article class="panel aligned-panel"><h2>Wind Speed · Drag for Previous 24 Hours</h2><canvas id="alignedWindChart"></canvas></article>
-      </div>
-      <div class="aligned-support">
-        <article class="tile"><span class="label">Wet Bulb</span><strong id="alignedWetBulb">—</strong><small>Calculated</small></article>
-        <article class="tile"><span class="label">Dew Point</span><strong id="alignedDewPoint">—</strong><small>Calculated</small></article>
-        <article class="tile wind-tile"><div><span class="label">Wind Direction</span><strong id="alignedWindDirection">—</strong><small id="alignedWindDegrees">—</small></div><div class="wind-arrow"><span id="alignedWindArrow">↑</span></div></article>
-      </div>
+    <section id="alignedView" class="aligned-view hidden" aria-labelledby="currentConditionsTitle">
+      <article class="current-conditions-panel">
+        <h2 id="currentConditionsTitle">Current Conditions</h2>
+        <div class="conditions-grid">
+          <div class="condition-value" id="alignedDryBulb">—</div><div class="condition-label">Dry Bulb</div>
+          <div class="condition-value" id="alignedWetBulb">—</div><div class="condition-label">Wet Bulb</div>
+          <div class="condition-value" id="alignedDewPoint">—</div><div class="condition-label">Dew Point</div>
+          <div class="condition-value" id="alignedHumidity">—</div><div class="condition-label">Relative Humidity</div>
+          <div class="condition-value" id="alignedPressure">—</div><div class="condition-label">Barometric Pressure</div>
+          <div class="condition-value condition-value-small" id="alignedPressureTrend">—</div><div class="condition-label">Pressure Trend</div>
+          <div class="condition-value" id="alignedWindSpeed">—</div><div class="condition-label">Wind Speed</div>
+          <div class="condition-value" id="alignedWindGust">—</div><div class="condition-label">Wind Gust</div>
+          <div class="condition-value" id="alignedWindDirection">—</div><div class="condition-label">Wind Direction</div>
+          <div class="condition-value" id="alignedWindDegrees">—</div><div class="condition-label">Wind Degrees</div>
+        </div>
+      </article>
     </section>
 
-    <section class="operations-grid">
+    <section id="operationsGrid" class="operations-grid">
       <article class="panel radar-panel">
         <div class="section-head"><div><p class="eyebrow">KICT base reflectivity</p><h2>🌦 Radar Loop</h2></div><a class="button-link" href="https://radar.weather.gov/" target="_blank" rel="noopener">Open full radar</a></div>
         <iframe title="National Weather Service KICT radar loop" src="https://www.weather.gov/radarliteloop?radarid=KICT" loading="lazy"></iframe>
@@ -119,7 +113,7 @@
       </div>
     </section>
 
-    <p class="footnote">Each hourly chart opens on the current 24 hours. Drag left or right to view the preceding 24 hours. Live values refresh every five minutes; hourly chart data rebuilds at the top of each hour.</p>
+    <p id="chartFootnote" class="footnote">Each hourly chart opens on the current 24 hours. Drag left or right to view the preceding 24 hours. Live values refresh every five minutes; hourly chart data rebuilds at the top of each hour.</p>
   </main>
 
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
