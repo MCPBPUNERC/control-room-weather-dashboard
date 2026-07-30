@@ -17,7 +17,7 @@
     <div>
       <p class="eyebrow">McPherson BPU</p>
       <h1>Control Room Weather Dashboard</h1>
-      <p class="subtitle">Exact coordinates: 38.3633556, -97.6833972</p>
+      <p class="subtitle">38.3633556, -97.6833972 · Elevation <span id="elevation">—</span></p>
     </div>
     <div class="actions">
       <button id="installBtn" class="hidden">Install App</button>
@@ -27,22 +27,26 @@
   </header>
 
   <main>
-    <section id="alertBanner" class="alert hidden" aria-live="polite">
+    <section id="alertBanner" class="alert hidden" aria-live="assertive">
+      <div class="alert-kicker">National Weather Service</div>
       <strong id="alertTitle"></strong>
       <span id="alertText"></span>
+      <small id="alertExpires"></small>
     </section>
 
     <section class="statusbar">
       <span><i id="statusDot" class="dot"></i><strong id="statusText">Loading…</strong></span>
       <span id="updatedText">—</span>
+      <span id="nextRefreshText">—</span>
       <span>Source: Open-Meteo exact coordinates</span>
     </section>
 
     <section class="tiles">
-      <article class="tile"><span class="label">Dry Bulb</span><strong id="dryBulb">—</strong><small id="drySub">Current</small></article>
+      <article class="tile"><span class="label">Dry Bulb</span><strong id="dryBulb">—</strong><small>Current</small></article>
       <article class="tile"><span class="label">Wet Bulb</span><strong id="wetBulb">—</strong><small>Calculated from temperature and humidity</small></article>
-      <article class="tile"><span class="label">Relative Humidity</span><strong id="humidity">—</strong><small id="dewPoint">—</small></article>
-      <article class="tile"><span class="label">Barometric Pressure</span><strong id="pressure">—</strong><small>Mean sea level</small></article>
+      <article class="tile"><span class="label">Dew Point</span><strong id="dewPoint">—</strong><small>Calculated</small></article>
+      <article class="tile"><span class="label">Relative Humidity</span><strong id="humidity">—</strong><small>Current</small></article>
+      <article class="tile"><span class="label">Barometric Pressure</span><strong id="pressure">—</strong><small id="pressureTrend">—</small></article>
       <article class="tile"><span class="label">Wind Speed</span><strong id="windSpeed">—</strong><small id="windGust">—</small></article>
       <article class="tile wind-tile">
         <div><span class="label">Wind Direction</span><strong id="windDirection">—</strong><small id="windDegrees">—</small></div>
@@ -57,17 +61,17 @@
       <article class="panel"><h2>Wind Speed · Past 24 Hours</h2><canvas id="windChart"></canvas></article>
     </section>
 
-    <p class="footnote">Live values refresh every five minutes. The past-24-hour table is rebuilt at the top of each hour and remains frozen during that hour.</p>
+    <p class="footnote">Live values refresh every five minutes. Past-24-hour charts and the copy table rebuild at the top of each hour and remain frozen during that hour.</p>
   </main>
 
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card">
       <div class="modal-head">
-        <div><h2 id="modalTitle">Past 24 Hours</h2><p>Timestamp, Dry Bulb, Wet Bulb and Humidity</p></div>
+        <div><h2 id="modalTitle">Past 24 Hours</h2><p>Excel-ready hourly observations</p></div>
         <div class="actions"><button id="copyBtn">Copy for Excel</button><button id="closeBtn">Close</button></div>
       </div>
       <div class="table-wrap">
-        <table><thead><tr><th>Timestamp</th><th>Dry Bulb</th><th>Wet Bulb</th><th>Humidity</th></tr></thead><tbody id="rollingBody"></tbody></table>
+        <table><thead><tr><th>Timestamp</th><th>Dry Bulb</th><th>Wet Bulb</th><th>Dew Point</th><th>Humidity</th><th>Pressure</th><th>Wind Speed</th></tr></thead><tbody id="rollingBody"></tbody></table>
       </div>
     </div>
   </div>
