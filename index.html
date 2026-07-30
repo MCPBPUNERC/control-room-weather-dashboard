@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/styles.css" />
   <title>Control Room Weather Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js" defer></script>
   <script type="module" src="/src/app.js"></script>
 </head>
 <body>
@@ -55,13 +57,13 @@
     </section>
 
     <section class="charts">
-      <article class="panel"><h2>Dry Bulb · Past 24 Hours</h2><canvas id="tempChart"></canvas></article>
-      <article class="panel"><h2>Humidity · Past 24 Hours</h2><canvas id="humidityChart"></canvas></article>
-      <article class="panel"><h2>Pressure · Past 24 Hours</h2><canvas id="pressureChart"></canvas></article>
-      <article class="panel"><h2>Wind Speed · Past 24 Hours</h2><canvas id="windChart"></canvas></article>
+      <article class="panel"><h2>Dry Bulb · Drag for Previous 24 Hours</h2><canvas id="tempChart"></canvas></article>
+      <article class="panel"><h2>Humidity · Drag for Previous 24 Hours</h2><canvas id="humidityChart"></canvas></article>
+      <article class="panel"><h2>Pressure · Drag for Previous 24 Hours</h2><canvas id="pressureChart"></canvas></article>
+      <article class="panel"><h2>Wind Speed · Drag for Previous 24 Hours</h2><canvas id="windChart"></canvas></article>
     </section>
 
-    <p class="footnote">Live values refresh every five minutes. Past-24-hour charts and the copy table rebuild at the top of each hour and remain frozen during that hour.</p>
+    <p class="footnote">Each chart opens on the current 24 hours. Drag left or right to view the preceding 24 hours. Live values refresh every five minutes; hourly chart data rebuilds at the top of each hour.</p>
   </main>
 
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
