@@ -75,6 +75,32 @@ async function copyMatchedRows(){
   }catch(error){console.error(error);showToast('Clipboard access was blocked')}
 }
 
+function simplifyOperationsIndicators(){
+  const grid=$('eventIndicators');
+  if(!grid)return;
+  const cards=[...grid.children];
+  cards.forEach(card=>{
+    const name=card.querySelector('strong')?.textContent?.trim().toLowerCase()||'';
+    if(name!=='precipitation'&&name!=='nws alerts')card.remove();
+  });
+  grid.style.gridTemplateColumns='repeat(2,minmax(0,1fr))';
+  const remaining=[...grid.children];
+  const overall=$('eventOverall');
+  if(overall){
+    const hasAlert=remaining.some(card=>card.classList.contains('alerting'));
+    const hasWatch=remaining.some(card=>card.classList.contains('watch'));
+    overall.className=`event-state ${hasAlert?'alerting':hasWatch?'watch':'normal'}`;
+    overall.textContent=hasAlert?'Alert':hasWatch?'Watch':'Normal';
+  }
+}
+
+const indicatorGrid=$('eventIndicators');
+if(indicatorGrid){
+  const observer=new MutationObserver(simplifyOperationsIndicators);
+  observer.observe(indicatorGrid,{childList:true});
+  simplifyOperationsIndicators();
+}
+
 $('rollingBtn').onclick=renderMatchedTable;
 $('exportBtn').onclick=exportMatchedRows;
 $('copyBtn').onclick=copyMatchedRows;
