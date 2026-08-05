@@ -14,6 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js" defer></script>
   <script type="module" src="/src/app.js"></script>
   <script type="module" src="/src/holiday-additions.js"></script>
+  <script type="module" src="/src/hourly-data-fix.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -120,11 +121,11 @@
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card">
       <div class="modal-head">
-        <div><h2 id="modalTitle">Past 24 Hours</h2><p>Excel-ready hourly observations</p></div>
+        <div><h2 id="modalTitle">Past 24 Hours</h2><p>Last 24 completed hour-ending observations</p></div>
         <div class="actions"><button id="copyBtn">Copy for Excel</button><button id="closeBtn">Close</button></div>
       </div>
       <div class="table-wrap">
-        <table><thead><tr><th>Timestamp</th><th>Dry Bulb</th><th>Wet Bulb</th><th>Dew Point</th><th>Humidity</th><th>Pressure</th><th>Wind Speed</th></tr></thead><tbody id="rollingBody"></tbody></table>
+        <table><thead><tr><th>Date</th><th>Hour Ending</th><th>Wet Bulb</th><th>Dry Bulb</th><th>Humidity</th></tr></thead><tbody id="rollingBody"></tbody></table>
       </div>
     </div>
   </div>
